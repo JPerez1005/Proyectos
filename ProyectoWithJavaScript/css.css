@@ -1,0 +1,248 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+    color: black;
+  }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+  }
+
+  .carrusel{
+    overflow: hidden;
+    border: medium solid #222;
+  }
+
+  .carousel-slide img{
+    height: 50%;
+    width: 100%;
+  }
+
+  .contenedor{
+    margin-top: 0;
+    /* background: linear-gradient(45deg,#fbda61, #222); */
+    background-image: url(assets/beach-1869523_1920.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 5%;
+  }
+
+  .box{
+    position: relative;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box .card{
+    position: relative;
+    background: rgba(255, 255, 255, 0.5);
+    width: 70%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    /* backdrop-filter: blur(10px); */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+    transform-style: preserve-3d;
+    text-align: center;
+  }
+
+  .elements{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 20%;
+    height: 10vh;
+    margin-top: -20%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateZ(80px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+  }
+
+  .elements.bg::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(https://cdn-icons-png.flaticon.com/128/157/157247.png);
+    background-size: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .container{
+    margin: 10% auto;
+    width: 90%;
+    height: 80vh;
+    border: thin solid black;
+  }
+
+  .item{
+    border: medium solid #222;
+  }
+
+  .licores{
+    margin-top: 25%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);/*auto fill rellena la grid con tracks generados dinamicamente*/
+    color: aliceblue;
+    justify-content: space-evenly;
+    align-content: space-around;
+    cursor: pointer;
+    gap: 10vh .5vw;
+  }
+
+  .cards{
+    position: relative;
+    width: inherit;
+    height: 150px;
+    /* height: 250px; */
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+  }
+
+  .cards:hover{
+    height: 250px;
+  }
+
+  .imgBx{
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg,#fbda61, #157283);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 1);
+    overflow: hidden;
+    transition: 0.5s;
+  }
+
+  .cards:hover .imgBx{
+    width: 150px;
+    height: 150px;
+  }
+
+  .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+  }
+
+  .cards .content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cards .content .details{
+    padding: 10%;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(40px);
+  }
+
+  .cards:hover .content .details{
+    transform: translateY(0px);
+  }
+
+  .cards .content .details .h2{
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.2em;
+  }
+
+  .cards .content .details .h2 span{
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+  
+  .cards .content .details .data{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .cards .content .details .data h3{
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: 600;
+  }
+
+  @media(min-width: 1024px){
+
+    body{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas:
+        "header header"
+        "carousel-slide box"
+        "licores licores"
+        "footer footer";
+    }
+
+    .header{
+        grid-area: header;
+    }
+
+    .carousel-slide{
+        grid-area: carousel-slide;
+    }
+
+    .box{
+        grid-area: box;
+    }
+
+    .licores{
+        grid-area: licores;
+    }
+
+    .footer{
+        grid-area: footer;
+    }
+    .elements{
+        margin-top: -10%;
+    }
+
+    .container{
+        margin: 0;
+    }
+
+    .licores{
+        margin-top: 10%;
+    }
+  }

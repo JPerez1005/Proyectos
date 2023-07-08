@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <link rel="stylesheet" href="paginacion.css">
+    <!-- iconos de hamburguer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+    <!-- animaciones de aparicion -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <button class="panel-btn hamburger hamburger--squeeze" type="button"><!--Agreamos un panel-btn para llamarlo en los styles-->
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        
+        <aside class="panel">
+            <nav class="menu" data-aos="fade-right" data-aos-duration="3000">
+                <a class="active" href="/index.html">Inicio</a>
+                <a href="#footer">Contactenos</a>
+                <a href="Buscador.html">Buscador</a>
+                <a href="Ubicacion.html">Ubicación</a>
+                <a href="Categorias.html">Categorias</a>
+                <a href="Carrito.html">Carrito</a>
+                <a href="Politicas.html">Politicas</a>
+                <a href="Recetas.html">Recetas</a>                  
+            </nav>
+        </aside>
+        <button class="btnLogin-popup" data-aos="fade-right" data-aos-duration="3000" id="Login">Login</button>
+    </header>
+    <main>
+        <div class="login">
+            <div class="wrapper">
+                <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+                <div class="form-box login">
+                    <h2>Login</h2>
+                    <form action="#">
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                            <input type="password" required>
+                            <label>Password</label>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Remember me</label>
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                        <div class="login-register">
+                            <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+        
+                <div class="form-box register">
+                    <h2>Registration</h2>
+                    <form action="#">
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="person"></ion-icon></span>
+                            <input type="text" required>
+                            <label>Username</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                            <input type="password" required>
+                            <label>Password</label>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Agree to the terms & conditions</label>
+                        </div>
+                        <button type="submit" class="btn">Register</button>
+                        <div class="login-register">
+                            <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="header-bg">
+            <h2>Aquí estarán las Categorias</h2>
+        </div>
+        <section>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Assumenda eveniet nesciunt consequuntur itaque molestiae
+                culpa, esse accusantium sit eius commodi laboriosam, quos
+                ex reprehenderit totam maiores sunt blanditiis est mollitia?</p>
+                <br>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Assumenda eveniet nesciunt consequuntur itaque molestiae
+                culpa, esse accusantium sit eius commodi laboriosam, quos
+                ex reprehenderit totam maiores sunt blanditiis est mollitia?
+                </p>
+                <footer id="footer">
+                    <ul>
+                        <li>Contact</li>
+                        <li>About us</li>
+                        <li>Terms and conditions</li>
+                    </ul>
+                    <ul>
+                        <li>Carers</li>
+                        <li>Change country</li>
+                        <li>FAQ</li>
+                    </ul>
+                </footer>
+        </section>
+    </main>
+    
+
+    <!-- iconos -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- misScripts -->
+    <script src="/metodoNavWithLogin.js"></script>
+    <script src="/menuResponsive.js"></script>
+    <!-- animaciones de aparicion -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+    <!-- script de audios -->
+    <script>
+
+        const $Login=document.getElementById("Login"),
+        $registro=document.querySelector('.register-link'),
+        $login=document.querySelector('.login-link');//varias funciones en un mismo evento
+
+
+        $Login.addEventListener("click"/*recordar q esto es un tipo de evento*/,(e)=>{
+            let texto="Este es el Login";
+            
+
+            const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+            hablar(texto);
+        });
+
+        $registro.addEventListener("click", e=>{
+            let=texto="Usted ésta registrandose en nuestra Pagina Web";
+            const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+            hablar(texto);
+        });
+
+        $login.addEventListener("click", e=>{
+            let=texto="usted está ingresando en nuestra Pagina Web";
+            const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+            hablar(texto);
+        });
+
+        document.addEventListener("DOMContentLoaded", e=>{
+            let texto="Estamos en las categorias de la empresa";
+            const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+            hablar(texto);
+        });
+    </script>
+    <!-- Script de conector jquery para efecto de scroll -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                $('.header-bg').css("opacity", 1 -
+                $(window).scrollTop()/700)
+            })
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,852 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background-color: #130606; */
+    background-image: url(assets/beach-1869523_1920.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo{
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+
+.menu a{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.menu a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    /* transform-origin: right; *//*cambio de animacion*/
+    transform: scaleX(0);/*esconde el subrayado*/
+    transition: transform .5s;
+}
+
+.menu a:hover::after{
+    /* transform-origin: left; *//*cambio de animacion*/
+    transform: scaleX(1);
+}
+
+/*Boton del login*/
+
+.btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.btnLogin-popup:hover{
+    background: #fff;
+    color: black;
+}
+
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.panel-btn{
+    /* display: none; */
+    visibility: hidden;
+}
+
+.wrapper{/*caja del login*/
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;/*centra horizontalmente*/
+    align-items: center;/*centra verticalmente*/
+    overflow: hidden;/*esto esconde el icono de cerrar por fuera del box, se sigue mostrando por dentro*/
+    transform: scale(0);/*esto esconde el login*/
+    transition: transform .5s ease/*al aparecer aparece en modo expansion*/, height .2s ease;/*se expande la caja*/
+    z-index: 99;
+    color: #fff;
+}
+
+.wrapper.active-popup{
+    transform: scale(1);
+}
+
+.wrapper.active{
+    height: 520px;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+    /* display: none; */
+}
+.wrapper.active .form-box.login{
+    /* display: none; */
+    transition: none;
+    transform: translate(-400px);
+}
+
+.wrapper .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);/*translada a la derecha la caja de registro*/
+}
+
+.wrapper.active .form-box.register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #222;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;/*cenra horizontalmente el texto*/
+
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 600;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 57px;
+}
+
+
+.remember-forgot{
+    font-size: .9em;
+    color: #fff;
+    font-weight: 500;
+    margin: -5px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #222;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover{
+    text-decoration: underline;
+}
+
+body{
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 80px auto);
+        grid-template-areas:
+        "header             header      header"
+        "login              login       login"
+        "carrousel          carrousel   carrousel"
+        "products           products    products"
+        "coverage           coverage    best-seller"
+        "leading-companies  others      others"
+        "footer             footer      footer"
+        ;
+}
+
+.header{
+    grid-area: header;
+}
+
+.login{
+    grid-area: login;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+
+.carrousel{
+    grid-area: carrousel;
+    margin-top: -31.2%;
+}
+
+.d-item{
+    height: 700px;
+}
+
+.d-img{
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.products{
+    grid-area: products;
+    /* height: 200vh; */
+}
+
+.contenedor{
+    margin-top: 10%;
+    position: relative;
+}
+
+.contenedor::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(rgba(255,255,255,0),#222);
+}
+
+
+
+  .box{
+    position: relative;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box .card{
+    position: relative;
+    background: transparent;
+    width: 70%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    margin-top: 10%;
+    /* backdrop-filter: blur(10px); */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+    transform-style: preserve-3d;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .elements{
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    width: 20%;
+    height: 10vh;
+    margin-top: -10%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateZ(80px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+  }
+
+  .elements.bg::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(https://cdn-icons-png.flaticon.com/128/157/157247.png);
+    background-size: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .container{
+    margin: 0% auto;
+    width: 90%;
+    height: 80vh;
+    border: thin solid black;
+  }
+
+  .item{
+    border: medium solid #222;
+  }
+
+  .licores{
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);/*auto fill rellena la grid con tracks generados dinamicamente*/
+    color: #222;
+    justify-content: space-evenly;
+    align-content: space-around;
+    cursor: pointer;
+    gap: 10vh .5vw;
+    margin-bottom: 20%;
+    padding: 5%;
+  }
+
+  .cards{
+    position: relative;
+    width: inherit;
+    height: 150px;
+    /* height: 250px; */
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+  }
+
+  .cards:hover{
+    height: 250px;
+  }
+
+  .imgBx{
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg,#fbda61, #157283);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 1);
+    overflow: hidden;
+    transition: 0.5s;
+  }
+
+  .cards:hover .imgBx{
+    width: 150px;
+    height: 150px;
+  }
+
+  .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+  }
+
+  .cards .content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cards .content .details{
+    padding: 10%;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(40px);
+  }
+
+  .cards:hover .content .details{
+    transform: translateY(0px);
+  }
+
+  .cards .content .details .h2{
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.2em;
+  }
+
+  .cards .content .details .h2 span{
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+  
+  .cards .content .details .data{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .cards .content .details .data h3{
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: 600;
+  }
+
+.best-seller{
+    grid-area: best-seller;
+    background-color: #222;
+    height: 125vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.card-best-seller{
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    background-image: url(https://www.buchanansmexico.com/assets/img/template/bg-sections/family-master-2.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content:center;
+    margin-top: 60%;
+    margin-right: 240px;
+    margin-bottom: 50%;
+
+}
+
+.card-best-seller .content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: .5s;
+}
+
+.card-best-seller:hover .content{
+    opacity: 1;
+}
+
+.coverage{
+    grid-area: coverage;
+    background-color: #222;
+    color: white;
+    height: 125vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 12%;
+}
+
+.coverage .box{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+    background-image: url(assets/beach-1869523_1920.jpg);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15%;
+}
+
+.box h2{
+    color: #222;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+}
+
+.box ul{
+    width: 100%;
+    position: relative;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.box ul a{
+    text-decoration: none;
+    color: #222;
+}
+
+.box ul li{
+    list-style: none;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .1);
+    transition: transform 0.5s;
+    margin-left: -8%;
+    /* background: rgba(0, 0, 0, .5); */
+    /* opacity: 0; */
+}
+
+.box ul li:hover{
+    transform: scale(1.1);
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .2);
+    color: #fff;
+    cursor: pointer;
+    /* opacity: 1; */
+}
+
+
+.leading-companies{
+    grid-area: leading-companies;
+    height: 50vh;
+    margin-top: 120%;
+    display: flex;
+    justify-content: center;
+}
+
+.leading-companies .box{
+    background-image: url(https://images.pexels.com/photos/7078698/pexels-photo-7078698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    
+}
+
+.leading-companies .box h2{
+    color: #fff;
+}
+
+.leading-companies .box ul li{
+    color: #000000;
+    font-weight: 900;
+}
+
+.leading-companies .box ul li:hover{
+    transform: scale(1.1);
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .2);
+    color: #ffffff;
+    cursor: pointer;
+    /* opacity: 1; */
+}
+
+.others{
+    grid-area: others;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 90%;
+}
+
+.imgScroll{
+    position: absolute;
+    left: 0;
+    padding: 60px 0;
+    width: 70%;
+    display: flex;
+    margin-top: -29%;
+    margin-left: 30%;
+    overflow-x: hidden;
+}
+
+.imgScroll h2{
+    display: flex;
+    margin-top: -10%;
+    margin-left: 50%;
+    font-weight: 900;
+}
+
+.imgScroll div{
+    display: flex;
+    animation: animate 40s linear infinite;
+    animation-delay: -40px;
+}
+
+.imgScroll div:nth-child(2){
+    animation: animate2 40s linear infinite;
+    animation-delay: -40px;
+}
+
+.imgScroll:hover div,
+.imgScroll:hover div:nth-child(2){
+    animation-play-state: paused;
+}
+
+@keyframes animate{
+    0%{
+        transform: translateX(-70%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes animate2{
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-200%);
+    }
+}
+
+.imgScroll div img{
+    margin: 0 25px;
+    max-width: 300px;
+    max-height: 300px;
+    background-size: cover;
+    transition: 0.25s;
+    border-radius: 10px;
+}
+
+.imgScroll div img:hover{
+    border: 10px solid #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+}
+
+.imgScroll:hover div img{
+    opacity: 0.05;
+    filter: blur(5px);
+}
+
+.imgScroll div img:hover{
+    opacity: 1;
+    filter: blur(0px);
+}
+
+.footer{
+    grid-area: footer;
+    background-color: #000000;
+    margin-top: 24.5%;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footer div{
+    width: 50vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media(max-width:1024px){
+    body{
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(8, 80px auto);
+        grid-template-areas: 
+        "header"
+        "login"
+        "carrousel"
+        "products"
+        "best-seller"
+        "coverage"
+        "leading-companies"
+        "others"
+        "footer"
+        ;
+    }
+
+
+    .panel-btn{
+        visibility: visible;
+        color: #fff;
+    }
+
+    
+    .panel{
+        position: fixed;
+        z-index: 998;/*para no perder inactividad con el btn*/
+        top: 0;/*que se adueñe de todo el html desde arriba*/
+        bottom: 0;/*tambien que se adueñe de todo lo de abajo*/
+        left: 0;/*izquierda tambien*/
+        right: 0;/*que se adueñe de toda la derecha tambien el panel*/
+        width: 100%;/*anchura de un 100%*/
+        background-color: aliceblue;
+        transition: transform .3s ease;/*efecto de aparición*/
+        /* ahora podemos mover el panel hacia arriba */
+        transform: translate(/*x,y*/-100%, 0);
+        overflow-y: auto;/*Con Overflow Agregamos otro Scroll*/
+    }
+    
+    .panel.is-active{
+        transform: translate(0,0);
+        scroll-behavior: smooth;
+    }
+    
+    .panel-btn{
+        position: fixed;/*posicion de manera fija*/
+        z-index: 999;/*siempre estará por encima de cualquier otro item con numero menor*/
+        /*bottom: 1vh;/*su pposicion abajo*/
+        left: 1vw;/*su posicion estará en la derecha*/
+        width: 4rem;
+        height: 4rem;
+        /* border-radius: 50%; */
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color:#1ef7ec; */
+        /* background-color: black; */
+    }
+    
+    .menu{
+        width: inherit;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+    }
+    
+    
+    .menu a{
+        padding: 2rem;
+        width: 100%;
+        display: block;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: var(--main-color);
+        transition: all 0.3s ease;
+    }
+    
+    .menu a:hover{
+        font-weight: bold;
+        color: var(--second-color);
+        background-color: var(--main-color);
+    }
+
+    .btnLogin-popup{
+        right: 1vw;
+    }
+
+    .box .card{
+        margin-top: 30%;
+    }
+
+}

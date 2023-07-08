@@ -1,0 +1,17 @@
+se creó el archivo package.json a través de la terminal, colocando
+el comando npm init, automaticamente crea el archivo package.json
+
+ahora instalamos los paquetes de firebase  con la siguiente
+instrucción en la terminal: "npm i firebase express.js bcrypt nodemon"
+y se crea el archivo "package-lock.json"
+
+en los scripts o objeto scripts del archivo package.json se elimina lo que esté en 
+esa linea y se coloca lo siguiente: "start": "nodemon server.js"
+
+también agregar la siguiente linea debajo del main:       "type": "module",
+
+
+tambien colocacamos la siguiente instruccion
+npm i aws-sdk
+npm i dotenv
+

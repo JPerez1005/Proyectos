@@ -1,0 +1,210 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+    }
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: inherit;
+    }
+
+    body{
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(8, 80px auto);
+        grid-template-areas: 
+        "header"
+        "carrousel"
+        "products"
+        "best-seller"
+        "coverage"
+        "leading-companies"
+        "others"
+        "footer"
+        ;
+        background-image: url(assets/beach-1869523_1920.jpg);
+        /* background-image: url(https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1409.jpg?w=826&t=st=1679118370~exp=1679118970~hmac=1f32dfc80d0771e17ba0b43b31a33ce277a816dfff6d3e1121ea500219033369); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    body>*{
+        border: medium solid #222;
+    }
+
+    .header{
+        grid-area: header;
+    }
+
+    .section{
+        padding: 2rem;
+        padding-top: 4rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: var(--container-width);
+        min-height: 100vh;/*Altura minima de cada section*/
+        text-align: center;
+    }
+    
+    .panel{
+        position: fixed;
+        z-index: 998;/*para no perder inactividad con el btn*/
+        top: 0;/*que se adueñe de todo el html desde arriba*/
+        bottom: 0;/*tambien que se adueñe de todo lo de abajo*/
+        left: 0;/*izquierda tambien*/
+        right: 0;/*que se adueñe de toda la derecha tambien el panel*/
+        width: 100%;/*anchura de un 100%*/
+        background-color: aliceblue;
+        transition: transform .3s ease;/*efecto de aparición*/
+        /* ahora podemos mover el panel hacia arriba */
+        transform: translate(/*x,y*/-100%, 0);
+        overflow-y: auto;/*Con Overflow Agregamos otro Scroll*/
+    }
+    
+    .panel.is-active{
+        transform: translate(0,0);
+        scroll-behavior: smooth;
+    }
+    
+    .panel-btn{
+        position: fixed;/*posicion de manera fija*/
+        z-index: 999;/*siempre estará por encima de cualquier otro item con numero menor*/
+        /*bottom: 1vh;/*su pposicion abajo*/
+        right: 1vw;/*su posicion estará en la derecha*/
+        width: 4rem;
+        height: 4rem;
+        /* border-radius: 50%; */
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color:#1ef7ec; */
+        /* background-color: black; */
+    }
+    
+    .menu{
+        width: inherit;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+    }
+    
+    
+    .menu a{
+        padding: 2rem;
+        width: 100%;
+        display: block;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: var(--main-color);
+        transition: all 0.3s ease;
+    }
+    
+    .menu a:hover{
+        font-weight: bold;
+        color: var(--second-color);
+        background-color: var(--main-color);
+    }
+
+    .carrousel{
+        grid-area: carrousel;
+    }
+
+    .products{
+        grid-area: products;
+    }
+
+    .best-seller{
+        grid-area: best-seller;
+    }
+
+    .coverage{
+        grid-area: coverage;
+    }
+
+    .leading-companies{
+        grid-area: leading-companies;
+    }
+
+    .others{
+        grid-area: others;
+    }
+
+    .footer{
+        grid-area: footer;
+    }
+
+    @media(min-width: 1024px){
+        body{
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(6, 80px auto);
+            grid-template-areas:
+            "header             header      header"
+            "carrousel          carrousel   carrousel"
+            "products           products    products"
+            "coverage           coverage    best-seller"
+            "leading-companies  others      others"
+            "footer             footer      footer"
+            ;
+        }
+
+        .panel{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 80px;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            z-index: 99;
+            transform: translate(0,0);
+            background: transparent;
+            /* overflow-y: hidden; */
+            justify-content: flex-start;
+            align-self: start;
+        }
+
+        .menu a{
+            position: relative;
+            font-size: 1.1em;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+        }
+
+        .menu a::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: #fff;
+            border-radius: 5px;
+            /* transform-origin: right; *//*cambio de animacion*/
+            transform: scaleX(0);/*esconde el subrayado*/
+            transition: transform .5s;
+        }
+
+        .navigation a:hover::after{
+            /* transform-origin: left; *//*cambio de animacion*/
+            transform: scaleX(1);
+        }
+
+        .panel-btn{
+            display: none;
+            visibility: hidden;
+        }
+    }
